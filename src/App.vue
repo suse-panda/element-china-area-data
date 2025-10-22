@@ -69,7 +69,7 @@ import {
   regionDataPlus,
   CodeToText,
   TextToCode
-} from "../dist/app.js";
+} from "./app.js";
 
 export default {
   data() {
@@ -82,7 +82,7 @@ export default {
       regionData,
       regionDataPlus,
       selectedOptions1: ["110000", "110100"],
-      selectedOptions2: ["120000", "120100", "120101"],
+      selectedOptions2: ["340000", "340100", "340101"],
       selectedOptions3: ["130000", ""],
       selectedOptions4: ["120000", "120100", ""]
     };

@@ -1,6 +1,14 @@
 import REGION_DATA from 'china-area-data'
 import { cloneDeep } from 'lodash-es'
 
+delete REGION_DATA[340100][340181];
+REGION_DATA[340000] = {
+  ...REGION_DATA[340000],
+  341900: '巢湖市',
+}
+REGION_DATA[340181] = {
+  340181: '巢湖市',
+}
 // code转汉字大对象
 const CodeToText = {}
 // 汉字转code大对象
@@ -15,14 +23,14 @@ CodeToText[''] = '全部'
 for (const prop in provinceObject) {
   regionData.push({
     value: prop, // 省份code值
-    label: provinceObject[prop] // 省份汉字
+    label: provinceObject[prop], // 省份汉字
   })
   CodeToText[prop] = provinceObject[prop]
   TextToCode[provinceObject[prop]] = {
-    code: prop
+    code: prop,
   }
   TextToCode[provinceObject[prop]]['全部'] = {
-    code: ''
+    code: '',
   }
 }
 // 计算市
@@ -33,14 +41,14 @@ for (let i = 0, len = regionData.length; i < len; i++) {
   for (const prop in REGION_DATA[provinceCode]) {
     provinceChildren.push({
       value: prop,
-      label: REGION_DATA[provinceCode][prop]
+      label: REGION_DATA[provinceCode][prop],
     })
     CodeToText[prop] = REGION_DATA[provinceCode][prop]
     TextToCode[provinceText][REGION_DATA[provinceCode][prop]] = {
-      code: prop
+      code: prop,
     }
     TextToCode[provinceText][REGION_DATA[provinceCode][prop]]['全部'] = {
-      code: ''
+      code: '',
     }
   }
   if (provinceChildren.length) {
@@ -61,11 +69,11 @@ for (let i = 0, len = regionData.length; i < len; i++) {
       for (const prop in REGION_DATA[cityCode]) {
         cityChildren.push({
           value: prop,
-          label: REGION_DATA[cityCode][prop]
+          label: REGION_DATA[cityCode][prop],
         })
         CodeToText[prop] = REGION_DATA[cityCode][prop]
         TextToCode[provinceText][cityText][REGION_DATA[cityCode][prop]] = {
-          code: prop
+          code: prop,
         }
       }
       if (cityChildren.length) {
@@ -79,14 +87,14 @@ for (let i = 0, len = regionData.length; i < len; i++) {
 const provinceAndCityDataPlus = cloneDeep(provinceAndCityData)
 provinceAndCityDataPlus.unshift({
   value: '',
-  label: '全部'
+  label: '全部',
 })
 for (let i = 0, len = provinceAndCityDataPlus.length; i < len; i++) {
   const province = provinceAndCityDataPlus[i].children
   if (province && province.length) {
     province.unshift({
       value: '',
-      label: '全部'
+      label: '全部',
     })
 
     for (let j = 0, len = province.length; j < len; j++) {
@@ -94,7 +102,7 @@ for (let i = 0, len = provinceAndCityDataPlus.length; i < len; i++) {
       if (city && city.length) {
         city.unshift({
           value: '',
-          label: '全部'
+          label: '全部',
         })
       }
     }
@@ -104,14 +112,14 @@ for (let i = 0, len = provinceAndCityDataPlus.length; i < len; i++) {
 const regionDataPlus = cloneDeep(regionData)
 regionDataPlus.unshift({
   value: '',
-  label: '全部'
+  label: '全部',
 })
 for (let i = 0, len = regionDataPlus.length; i < len; i++) {
   const province = regionDataPlus[i].children
   if (province && province.length) {
     province.unshift({
       value: '',
-      label: '全部'
+      label: '全部',
     })
 
     for (let j = 0, len = province.length; j < len; j++) {
@@ -119,10 +127,17 @@ for (let i = 0, len = regionDataPlus.length; i < len; i++) {
       if (city && city.length) {
         city.unshift({
           value: '',
-          label: '全部'
+          label: '全部',
         })
       }
     }
   }
 }
-export { provinceAndCityData, regionData, provinceAndCityDataPlus, regionDataPlus, CodeToText, TextToCode }
+export {
+  provinceAndCityData,
+  regionData,
+  provinceAndCityDataPlus,
+  regionDataPlus,
+  CodeToText,
+  TextToCode,
+}

@@ -6,8 +6,8 @@ REGION_DATA[340000] = {
   ...REGION_DATA[340000],
   341900: '巢湖市',
 }
-REGION_DATA[340181] = {
-  340181: '巢湖市',
+REGION_DATA[341900] = {
+  340181: '市辖区',
 }
 // code转汉字大对象
 const CodeToText = {}
